@@ -1,0 +1,22 @@
+# H2 数据库文件（如果不想提交到Git，可以取消注释）
+# data/
+
+# 编译输出
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# 日志
+*.log
+
+# 上传文件
+uploads/
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd

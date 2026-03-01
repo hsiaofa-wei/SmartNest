@@ -1,0 +1,70 @@
+server:
+  port: 8080 
+spring:
+  application:
+    name: smart-rental-system
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # JDK 1.8.0_131 不识别 utf8mb4 编码名，这里用 UTF-8 + 设置连接校对避免异常
+    url: jdbc:mysql://localhost:3306/rental_db?useUnicode=true&characterEncoding=UTF-8&connectionCollation=utf8mb4_general_ci&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      pool-name: rental-hikari
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+# JWT配置
+jwt:
+  secret: smartRentalSystemSecretKey2024
+  expiration: 86400000 # 24小时
+
+# 文件上传配置
+file:
+  upload:
+    path: C:/Users/Lenovo/Desktop/wzz/uploads/
+    url: /files/
+
+# 高德地图API配置
+amap:
+  key: YOUR_AMAP_KEY_HERE
+  ip-location-url: https://restapi.amap.com/v3/ip
+
+
+
+# 日志配置
+logging:
+  level:
+    com.rental: debug
+    org.springframework.security: debug
+
+# 支付宝沙箱配置
+alipay:
+  gateway-url: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+  app-id: 
+  app-private-key: 
+  alipay-public-key:
+  app-public-key: 
+  notify-url: http://localhost:8080/payment/alipay/notify
+  return-url: http://localhost:3000/tenant/payment/
+
